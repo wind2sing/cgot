@@ -3,6 +3,7 @@ const { loadCheerio, parse: parseIt } = require("cparse");
 const debugHttp = require("./debug-http")();
 function create({ filters = {}, cheerioOptions = {} } = {}) {
   const instance = got.extend(debugHttp, {
+    mutableDefaults: true,
     hooks: {
       afterResponse: [
         function add$(res) {
@@ -19,14 +20,13 @@ function create({ filters = {}, cheerioOptions = {} } = {}) {
         },
         function parseRes(res) {
           if (res.$) {
-            let { parse, parseCheck } = res.request.options;
-            if (parseCheck) {
-              const checkResult = parseCheck(res);
-              if (!checkResult) return;
-              if (["object", "string", "function"].includes(typeof checkResult))
-                parse = checkResult;
+            let { options } = res.request;
+            if (options.parseCheck) {
+              const checkResult = options.parseCheck(res);
+              if (!checkResult) return res;
             }
-            if (parse) res.parsed = parseIt(rule, res.$, filters);
+            if (options.parse)
+              res.parsed = parseIt(options.parse, res.$, filters);
           }
           return res;
         },
