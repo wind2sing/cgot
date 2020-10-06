@@ -1,4 +1,4 @@
-import { Options, Response, Got } from "got";
+import { Got } from "got";
 interface CreateOptions {
   filters: Object;
   cheerioOptions: Object;
