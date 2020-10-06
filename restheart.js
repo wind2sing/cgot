@@ -1,9 +1,9 @@
-const username = process.env["HEART_USER"] || "admin";
-const password = process.env["HEART_PASS"] || "secret";
 const got = require("got").default;
-module.exports = function heartAPI({ db, col, heartUrl }) {
+function heartAPI({ db, col, heartUrl, username, password }={}) {
+  username = username || process.env["HEART_USER"] || "admin";
+  password = password || process.env["HEART_PASS"] || "secret";
   let prefixUrl = heartUrl || process.env["HEART_URL"];
-  if (!prefixUrl) throw "Require env HEART_URL or parameter heartUrl !";
+  if (!prefixUrl) throw "Require parameter heartUrl or env HEART_URL!";
   if (db) prefixUrl += `/${db}`;
   if (col) prefixUrl += `/${col}`;
 
@@ -16,3 +16,4 @@ module.exports = function heartAPI({ db, col, heartUrl }) {
   });
   return dbAPI;
 };
+module.exports = heartAPI
