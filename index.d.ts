@@ -3,11 +3,11 @@ interface CreateOptions {
   filters: Object;
   cheerioOptions: Object;
 }
-interface cGot extends Got {
+interface CGot extends Got {
   filters: (newFilters?: Object) => any;
   cheerio: (cheerioOptions?: Object) => any;
   recreate: (createOptions?: CreateOptions) => any;
 }
 
-declare const c: cGot;
+declare const c: CGot;
 export = c;
