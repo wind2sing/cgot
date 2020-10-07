@@ -1,7 +1,7 @@
 const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
 const debugHttp = require("./debug-http")();
-function create({ filters = {}, cheerioOptions = {}, userAgent } = {}) {
+function create({ filters = {}, cheerio = {}, userAgent } = {}) {
   const instance = got.extend(debugHttp, {
     mutableDefaults: true,
     hooks: {
@@ -14,7 +14,7 @@ function create({ filters = {}, cheerioOptions = {}, userAgent } = {}) {
     return instance;
   };
   instance.cheerio = function addCheerioOptions(options = {}) {
-    Object.assign(cheerioOptions, options);
+    Object.assign(cheerio, options);
     return instance;
   };
   instance.userAgent = function (ua) {
@@ -32,7 +32,7 @@ function create({ filters = {}, cheerioOptions = {}, userAgent } = {}) {
       res.body &&
       !res.request.options.disableCheerio
     ) {
-      res.$ = loadCheerio(res.body, cheerioOptions, res.url);
+      res.$ = loadCheerio(res.body, cheerio, res.url);
     }
     return res;
   }

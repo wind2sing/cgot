@@ -1,7 +1,7 @@
 import { Got } from "got";
 interface CreateOptions {
   filters?: Object;
-  cheerioOptions?: Object;
+  cheerio?: Object;
   userAgent?: String;
 }
 interface CGot extends Got {
