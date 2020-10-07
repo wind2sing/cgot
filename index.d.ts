@@ -1,12 +1,14 @@
 import { Got } from "got";
 interface CreateOptions {
-  filters: Object;
-  cheerioOptions: Object;
+  filters?: Object;
+  cheerioOptions?: Object;
+  userAgent?: String;
 }
 interface CGot extends Got {
-  filters: (newFilters?: Object) => any;
-  cheerio: (cheerioOptions?: Object) => any;
-  recreate: (createOptions?: CreateOptions) => any;
+  filters: (newFilters?: Object) => CGot;
+  cheerio: (cheerioOptions?: Object) => CGot;
+  userAgent: (ua?: String) => CGot;
+  recreate: (createOptions?: CreateOptions) => CGot;
 }
 
 declare const c: CGot;
