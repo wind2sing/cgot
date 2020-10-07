@@ -3,6 +3,7 @@ interface CreateOptions {
   filters?: Object;
   cheerio?: Object;
   userAgent?: String;
+  disableParse?: true;
 }
 interface CGot extends Got {
   filters: (newFilters?: Object) => CGot;

@@ -1,11 +1,11 @@
 const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
 const debugHttp = require("./debug-http")();
-function create({ filters = {}, cheerio = {}, userAgent } = {}) {
+function create({ filters = {}, cheerio = {}, userAgent, disableParse } = {}) {
   const instance = got.extend(debugHttp, {
     mutableDefaults: true,
     hooks: {
-      afterResponse: [add$, parseRes],
+      afterResponse: disableParse ? [] : [add$, parseRes],
     },
   });
 
