@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com-ws///compare/v0.0.4...v0.0.5) (2020-10-15)
+
+
+### Features
+
+* parseIt ([e999e9e](https://github.com-ws///commit/e999e9e0105d59849aed6160617aad2008a6590a))
+
 ### [0.0.4](https://github.com-ws///compare/v0.0.3...v0.0.4) (2020-10-07)
 
 
