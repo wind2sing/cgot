@@ -62,6 +62,9 @@ function create({
         const checkResult = options.parseCheck(res);
         if (!checkResult) return res;
       }
+      res.parseIt = function (rule) {
+        return parseIt(rule, res.$, filters);
+      };
       if (options.parse) res.parsed = parseIt(options.parse, res.$, filters);
     }
     return res;
