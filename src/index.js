@@ -2,22 +2,20 @@ const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
 const { sleep } = require("./utils");
 const debugHttp = require("./debug-http");
-const proxy = require("./proxy");
+const delayOptions = require("./delay");
+const proxyOptions = require("./proxy");
 function create({
   filters = {},
   cheerio = {},
   userAgent,
   disableParse,
   delay,
+  proxy,
 } = {}) {
-  const instance = got.extend(debugHttp, proxy, {
+  const instance = got.extend(delayOptions, debugHttp, proxyOptions, {
     mutableDefaults: true,
     hooks: {
-      beforeRequest: [
-        async (options) => {
-          if (options.delay) await sleep(options.delay);
-        },
-      ],
+      beforeRequest: [],
       afterResponse: disableParse ? [] : [add$, parseRes],
     },
   });
@@ -39,6 +37,11 @@ function create({
     instance.defaults.options["delay"] = ms;
     return instance;
   };
+  
+  instance.delayRange = function (dr) {
+    instance.defaults.options["delayRange"] = dr;
+    return instance;
+  };
 
   instance.proxy = function (proxy) {
     instance.defaults.options["proxy"] = proxy;
@@ -49,6 +52,7 @@ function create({
 
   if (userAgent) instance.userAgent(userAgent);
   if (delay) instance.delay(delay);
+  if (proxy) instance.proxy();
   return instance;
 
   function add$(res) {

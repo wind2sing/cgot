@@ -12,6 +12,7 @@
   "dependencies": {
     "cparse": "^1.0.6",
     "debug": "^4.2.0",
+    "delay": "^5.0.0",
     "got": "^11.8.2",
     "proxy-agent": "^5.0.0"
   }

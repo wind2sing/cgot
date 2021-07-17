@@ -15,7 +15,8 @@ const hooks = {
           proxyUri = options.proxy(options);
         }
         if (proxyUri) {
-          debug(proxyUri, options.url.href);
+          debug(options.url.href, "proxied with", proxyUri);
+
           if (!options.agent) options.agent = {};
           options.agent.http = new ProxyAgent(proxyUri);
           options.agent.https = new ProxyAgent(proxyUri);
