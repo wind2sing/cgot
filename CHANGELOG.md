@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com-ws///compare/v0.0.6...v0.0.7) (2021-07-17)
+
+
+### Features
+
+* delay ([e57815c](https://github.com-ws///commit/e57815c50577bd896362164fb05674f673b11e4d))
+* proxy plugin ([105a332](https://github.com-ws///commit/105a332b54bb2088b46bc8deace8127aea79fc9f))
+* utils ([f80a280](https://github.com-ws///commit/f80a280729d8b6746e41c1b1c3059b56916b9f6e))
+
+
+### Bug Fixes
+
+* proxy as object ([71c19c0](https://github.com-ws///commit/71c19c03f8f5c812744690ba7898b942534b6d73))
+
 ### [0.0.6](https://github.com-ws///compare/v0.0.5...v0.0.6) (2021-07-16)
 
 ### [0.0.5](https://github.com-ws///compare/v0.0.4...v0.0.5) (2020-10-15)
