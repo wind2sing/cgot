@@ -6,11 +6,12 @@ const hooks = {
     async (options) => {
       if (options.proxy) {
         let proxyUri;
-        if (typeof options.proxy == "string") {
+        let type = typeof options.proxy;
+        if (type == "string" || type == "object") {
           proxyUri = options.proxy;
         }
 
-        if (typeof options.proxy == "function") {
+        if (type == "function") {
           proxyUri = options.proxy(options);
         }
         if (proxyUri) {
