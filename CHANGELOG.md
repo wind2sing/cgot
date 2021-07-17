@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com-ws///compare/v0.0.7...v0.0.8) (2021-07-17)
+
+
+### Features
+
+* throttle ([eed4d57](https://github.com-ws///commit/eed4d5727e66e8a5e862c142387f8453f7d042da))
+
 ### [0.0.7](https://github.com-ws///compare/v0.0.6...v0.0.7) (2021-07-17)
 
 
