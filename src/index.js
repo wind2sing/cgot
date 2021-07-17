@@ -1,7 +1,8 @@
 const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
+const { sleep } = require("./utils");
 const debugHttp = require("./debug-http")();
-const sleep = (ms) => new Promise((resolve) => setTimeout(() => resolve(), ms));
+
 function create({
   filters = {},
   cheerio = {},
@@ -75,7 +76,7 @@ module.exports = create;
 function getDefaultUA(ua) {
   return (
     ua ||
-    process.env["DEFAULT_UA"] ||
+    process.env["CGOT_UA"] ||
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
   );
 }
