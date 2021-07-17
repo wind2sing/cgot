@@ -11,6 +11,7 @@ interface CGot extends Got {
   cheerio: (cheerioOptions?: Object) => CGot;
   userAgent: (ua?: String) => CGot;
   delay: (ms?: Number) => CGot;
+  proxy: (proxyURI?: String) => CGot;
   recreate: (createOptions?: CreateOptions) => CGot;
 }
 

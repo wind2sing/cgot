@@ -1,8 +1,8 @@
 const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
 const { sleep } = require("./utils");
-const debugHttp = require("./debug-http")();
-
+const debugHttp = require("./debug-http");
+const proxy = require("./proxy");
 function create({
   filters = {},
   cheerio = {},
@@ -10,7 +10,7 @@ function create({
   disableParse,
   delay,
 } = {}) {
-  const instance = got.extend(debugHttp, {
+  const instance = got.extend(debugHttp, proxy, {
     mutableDefaults: true,
     hooks: {
       beforeRequest: [
@@ -39,6 +39,12 @@ function create({
     instance.defaults.options["delay"] = ms;
     return instance;
   };
+
+  instance.proxy = function (proxy) {
+    instance.defaults.options["proxy"] = proxy;
+    return instance;
+  };
+
   instance.recreate = create;
 
   if (userAgent) instance.userAgent(userAgent);
