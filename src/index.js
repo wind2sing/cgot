@@ -1,9 +1,10 @@
 const got = require("got").default;
 const { loadCheerio, parse: parseIt } = require("cparse");
-const { sleep } = require("./utils");
+const pThrottle = require("p-throttle");
 const debugHttp = require("./debug-http");
 const delayOptions = require("./delay");
 const proxyOptions = require("./proxy");
+
 function create({
   filters = {},
   cheerio = {},
@@ -11,6 +12,7 @@ function create({
   disableParse,
   delay,
   proxy,
+  throttle,
 } = {}) {
   const instance = got.extend(delayOptions, debugHttp, proxyOptions, {
     mutableDefaults: true,
@@ -37,7 +39,7 @@ function create({
     instance.defaults.options["delay"] = ms;
     return instance;
   };
-  
+
   instance.delayRange = function (dr) {
     instance.defaults.options["delayRange"] = dr;
     return instance;
@@ -48,11 +50,17 @@ function create({
     return instance;
   };
 
+  instance.throttle = function (throttleOptions) {
+    const _throttled = pThrottle(throttleOptions);
+    return _throttled(this);
+  };
+
   instance.recreate = create;
 
   if (userAgent) instance.userAgent(userAgent);
   if (delay) instance.delay(delay);
   if (proxy) instance.proxy();
+  if (throttle) return instance.throttle(throttle);
   return instance;
 
   function add$(res) {
