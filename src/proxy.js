@@ -12,7 +12,7 @@ const hooks = {
         }
 
         if (type == "function") {
-          proxyUri = options.proxy(options);
+          proxyUri = await options.proxy(options);
         }
         if (proxyUri) {
           debug(options.url.href, "proxied with", proxyUri);
