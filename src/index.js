@@ -1,4 +1,4 @@
-const got = require("got").default;
+const { gotScraping: got } = require("got-scraping");
 const { loadCheerio, parse: parseIt } = require("cparse");
 const debugHttp = require("./debug-http");
 const delayOptions = require("./delay");
@@ -17,7 +17,24 @@ function create({
   const instance = got.extend(delayOptions, debugHttp, proxyOptions, {
     mutableDefaults: true,
     hooks: {
-      beforeRequest: [],
+      init: [
+        (raw, options) => {
+          for (const key in raw) {
+            if (!(key in options)) {
+              options.context[key] = raw[key];
+              delete raw[key];
+            }
+          }
+        },
+      ],
+      beforeRequest: [
+        (options) => {
+          // All custom options will be visible under `options.context`
+          for (const key in options.context) {
+            options[key] = options.context[key];
+          }
+        },
+      ],
       afterResponse: disableParse ? [] : [add$, parseRes],
     },
   });
@@ -59,7 +76,7 @@ function create({
       });
     };
     queuedInstance._queue = queue;
-    return queuedInstance
+    return queuedInstance;
   };
   instance.recreate = create;
 

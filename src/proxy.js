@@ -4,15 +4,15 @@ const debug = require("debug")("cgot:proxy");
 const hooks = {
   beforeRequest: [
     async (options) => {
-      if (options.proxy) {
+      if (options.context.proxy) {
         let proxyUri;
-        let type = typeof options.proxy;
+        let type = typeof options.context.proxy;
         if (type == "string" || type == "object") {
-          proxyUri = options.proxy;
+          proxyUri = options.context.proxy;
         }
 
         if (type == "function") {
-          proxyUri = await options.proxy(options);
+          proxyUri = await options.context.proxy(options);
         }
         if (proxyUri) {
           debug(options.url.href, "proxied with", proxyUri);

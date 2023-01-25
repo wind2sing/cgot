@@ -1,6 +1,6 @@
 {
   "name": "cgot",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
     "cparse": "^1.0.6",
     "debug": "^4.2.0",
     "delay": "^5.0.0",
-    "got": "^11.8.2",
+    "got-scraping": "^3.2.12",
     "p-queue": "^6.6.2",
     "proxy-agent": "^5.0.0"
   }

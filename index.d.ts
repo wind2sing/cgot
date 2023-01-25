@@ -1,4 +1,4 @@
-import { Got } from "got";
+import { Got } from "got-scraping";
 import PQueue from "p-queue";
 
 interface CreateOptions {
