@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/wind2sing/cgot/compare/v0.1.0...v0.1.2) (2023-01-25)
+
 ## [0.1.0](https://github.com-ws///compare/v0.0.9...v0.1.0) (2021-07-18)
 
 ### [0.0.9](https://github.com-ws///compare/v0.0.8...v0.0.9) (2021-07-17)
